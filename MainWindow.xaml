@@ -1,0 +1,29 @@
+﻿<Window x:Class="CourseProdject.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:CourseProdject"
+        mc:Ignorable="d"
+        Title="Диспетчер задач" Height="500" Width="850" Icon="/icon.png">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="1*"/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+
+        <DataGrid x:Name="dataGrid" IsReadOnly="True" ItemsSource="{Binding ListProcess, Mode=TwoWay}" Grid.Column="0" AutoGenerateColumns="False" SelectedItem="{Binding SelectedProcess, Mode=TwoWay}">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Назва" Binding="{Binding Name}" Width="2*"/>
+                <DataGridTextColumn Header="CPU" Binding="{Binding CpuUsage}" Width="1*"/>
+                <DataGridTextColumn Header="Память" Binding="{Binding MemoryUsage}" Width="1*"/>
+            </DataGrid.Columns>
+        </DataGrid>
+
+        <StackPanel Grid.Column="1">
+            <WpfPlot Name="CPUPlot" Height="220"/>
+            <WpfPlot Name="MemoryPlot" Height="220"/>
+            <Button Grid.Column="1" Content="Завершить" Width="100" Height="20" VerticalAlignment="Bottom" HorizontalAlignment="Left" Margin="20, 0, 0, 10" Click="KillProcess_ButtonClick"/>
+        </StackPanel>
+    </Grid>
+</Window>
